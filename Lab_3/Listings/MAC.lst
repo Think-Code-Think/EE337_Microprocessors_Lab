@@ -1,0 +1,91 @@
+A51 MACRO ASSEMBLER  MAC                                                                  01/25/2024 22:43:44 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\MAC.obj
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE MAC.a51 SET(SMALL) DEBUG PRINT(.\Listings\MAC.lst) OBJECT(.\Objects\MAC
+                      .obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+0000                   2     ORG 0H
+0000 020100            3     LJMP MAIN
+0100                   4     ORG 100H
+0100                   5     MAIN:
+0100 3130              6     ACALL MAC
+0102 80FE              7     HERE: SJMP HERE
+0130                   8     ORG 130H
+                       9     
+0130                  10     MAC:
+0130 E570             11     MOV A , 70H
+0132 8573F0           12     MOV B , 73H
+0135 A4               13     MUL AB
+0136 F8               14     MOV R0 , A
+0137 A9F0             15     MOV R1 , B
+0139 E571             16     MOV A , 71H
+013B 8574F0           17     MOV B , 74H
+013E A4               18     MUL AB
+013F FA               19     MOV R2 , A
+0140 ABF0             20     MOV R3 , B
+0142 755000           21     MOV 50H ,#0H
+0145 3157             22     ACALL ADD16
+0147 E572             23     MOV A , 72H
+0149 8575F0           24     MOV B , 75H
+014C A4               25     MUL AB
+014D FA               26     MOV R2 , A
+014E ABF0             27     MOV R3 , B
+0150 3157             28     ACALL ADD16
+0152 8852             29     MOV 52H , R0
+0154 8951             30     MOV 51H , R1
+0156 22               31     RET
+                      32     
+0157                  33     ADD16:
+0157 E8               34     MOV A  , R0
+0158 2A               35     ADD A  , R2
+0159 F8               36     MOV R0 , A
+015A E9               37     MOV A  , R1
+015B 3B               38     ADDC A  , R3
+015C 5002             39     JNC NOCARRY
+015E 0550             40     INC 50H
+0160                  41     NOCARRY:
+0160 F9               42     MOV R1 , A
+0161 22               43     RET
+                      44     END
+                                     
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+A51 MACRO ASSEMBLER  MAC                                                                  01/25/2024 22:43:44 PAGE     2
+
+                             
+                             
+A51 MACRO ASSEMBLER  MAC                                                                  01/25/2024 22:43:44 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ADD16. . . . . . .  C ADDR   0157H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+HERE . . . . . . .  C ADDR   0102H   A   
+MAC. . . . . . . .  C ADDR   0130H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+NOCARRY. . . . . .  C ADDR   0160H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

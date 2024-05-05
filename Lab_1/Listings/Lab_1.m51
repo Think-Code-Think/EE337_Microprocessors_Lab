@@ -1,0 +1,95 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    01/16/2024  14:36:22  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\PORTSQ.obj TO .\Objects\Lab_1 PRINT (.\Listings\Lab_1.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\PORTSQ.obj (PORTSQ)
+
+
+LINK MAP OF MODULE:  .\Objects\Lab_1 (PORTSQ)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     022CH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Lab_1 (PORTSQ)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        PORTSQ
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  C:0108H         SYMBOL        BACK
+  C:010DH         SYMBOL        BACKIN
+  C:0211H         SYMBOL        DELAY
+  C:0200H         SYMBOL        FINDN
+  C:0209H         SYMBOL        FINDR
+  C:021DH         SYMBOL        HERE1
+  C:021EH         SYMBOL        HERE2
+  C:0100H         SYMBOL        MAIN
+  D:0090H         SYMBOL        P1
+  C:0000H         LINE#         2
+  C:0100H         LINE#         6
+  C:0102H         LINE#         7
+  C:0104H         LINE#         8
+  C:0106H         LINE#         9
+  C:0108H         LINE#         10
+  C:010AH         LINE#         11
+  C:010BH         LINE#         12
+  C:010DH         LINE#         14
+  C:010FH         LINE#         15
+  C:0110H         LINE#         16
+  C:0112H         LINE#         17
+  C:0114H         LINE#         18
+  C:0116H         LINE#         19
+  C:0200H         LINE#         23
+  C:0202H         LINE#         24
+  C:0204H         LINE#         25
+  C:0205H         LINE#         26
+  C:0206H         LINE#         27
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  01/16/2024  14:36:22  PAGE 2
+
+
+  C:0208H         LINE#         28
+  C:0209H         LINE#         31
+  C:020AH         LINE#         32
+  C:020BH         LINE#         33
+  C:020CH         LINE#         34
+  C:020EH         LINE#         35
+  C:020FH         LINE#         36
+  C:0210H         LINE#         37
+  C:0211H         LINE#         40
+  C:0213H         LINE#         41
+  C:0215H         LINE#         42
+  C:0217H         LINE#         43
+  C:0219H         LINE#         44
+  C:021BH         LINE#         45
+  C:021DH         LINE#         46
+  C:021EH         LINE#         47
+  C:0220H         LINE#         48
+  C:0221H         LINE#         49
+  C:0223H         LINE#         50
+  C:0225H         LINE#         51
+  C:0227H         LINE#         52
+  C:0229H         LINE#         53
+  C:022BH         LINE#         54
+  -------         ENDMOD        PORTSQ
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0047H BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=556
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

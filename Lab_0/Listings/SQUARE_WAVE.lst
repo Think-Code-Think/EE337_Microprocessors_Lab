@@ -1,0 +1,51 @@
+A51 MACRO ASSEMBLER  SQUARE_WAVE                                                          01/09/2024 14:59:40 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\SQUARE_WAVE.obj
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE SQUARE_WAVE.a51 SET(SMALL) DEBUG PRINT(.\Listings\SQUARE_WAVE.lst) OBJE
+                      CT(.\Objects\SQUARE_WAVE.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+                       4             
+0100                   5     MAIN:
+0100 D294              6     SETB P1.4
+0102 310A              7     ACALL DELAY
+0104 C294              8     CLR P1.4
+0106 310A              9     ACALL DELAY
+0108 80F6             10     SJMP MAIN
+                      11     
+010A                  12     DELAY:
+010A 7AFF             13     MOV R2,#255
+                      14     
+010C                  15     DELAY1:
+010C 79FF             16     MOV R1,#255
+010E D9FE             17     HERE: DJNZ R1, HERE
+0110 DAFA             18     DJNZ R2, DELAY1
+                      19     
+0112 22               20     RET
+                      21     
+                      22     END
+A51 MACRO ASSEMBLER  SQUARE_WAVE                                                          01/09/2024 14:59:40 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   010AH   A   
+DELAY1 . . . . . .  C ADDR   010CH   A   
+HERE . . . . . . .  C ADDR   010EH   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

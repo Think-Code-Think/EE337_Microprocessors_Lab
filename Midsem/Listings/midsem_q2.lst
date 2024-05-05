@@ -1,0 +1,226 @@
+A51 MACRO ASSEMBLER  MIDSEM_Q2                                                            02/10/2024 11:27:10 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\midsem_q2.obj
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE midsem_q2.a51 SET(SMALL) DEBUG PRINT(.\Listings\midsem_q2.lst) OBJECT(.
+                      \Objects\midsem_q2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN  
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 12011C            5     LCALL DETERMINANT ; DETERMINANT WILL BE STORED AT 69H
+0103 E569              6     MOV A , 69H
+0105 6058              7     JZ SINGULAR
+0107 12016D            8     LCALL COFACTOR
+010A 1201E3            9     LCALL INVERSE
+010D 80FE             10     HERE: SJMP HERE
+                      11     
+010F                  12     MULT_SUBT:
+010F EB               13     MOV A , R3
+0110 8CF0             14     MOV B , R4
+0112 A4               15     MUL AB
+0113 FD               16     MOV R5 , A
+0114 E9               17     MOV A , R1
+0115 8AF0             18     MOV B , R2
+0117 A4               19     MUL AB
+0118 C3               20     CLR C
+0119 9D               21     SUBB A , R5
+011A FD               22     MOV R5 , A
+011B 22               23     RET
+                      24     
+011C                  25     DETERMINANT:
+011C A860             26     MOV R0 , 60H
+011E A964             27     MOV R1 , 64H
+0120 AA68             28     MOV R2 , 68H
+0122 AB65             29     MOV R3 , 65H
+0124 AC67             30     MOV R4 , 67H
+0126 12010F           31     LCALL MULT_SUBT
+0129 ED               32     MOV A , R5
+012A 88F0             33     MOV B , R0
+012C A4               34     MUL AB
+012D F557             35     MOV 57H  , A
+                      36     
+012F A861             37     MOV R0 , 61H
+0131 A963             38     MOV R1 , 63H
+0133 AA68             39     MOV R2 , 68H
+0135 AB65             40     MOV R3 , 65H
+0137 AC66             41     MOV R4 , 66H
+0139 12010F           42     LCALL MULT_SUBT
+013C ED               43     MOV A , R5
+013D 88F0             44     MOV B , R0
+013F A4               45     MUL AB
+0140 F558             46     MOV 58H  , A
+                      47     
+0142 A862             48     MOV R0 , 62H
+0144 A963             49     MOV R1 , 63H
+0146 AA67             50     MOV R2 , 67H
+0148 AB64             51     MOV R3 , 64H
+014A AC66             52     MOV R4 , 66H
+014C 12010F           53     LCALL MULT_SUBT
+014F ED               54     MOV A , R5
+0150 88F0             55     MOV B , R0
+0152 A4               56     MUL AB
+0153 F559             57     MOV 59H  , A
+A51 MACRO ASSEMBLER  MIDSEM_Q2                                                            02/10/2024 11:27:10 PAGE     2
+
+                      58     
+0155 E557             59     MOV A , 57H
+0157 2559             60     ADD A , 59H
+0159 C3               61     CLR C
+015A 9558             62     SUBB A , 58H
+015C F569             63     MOV 69H , A ; BUT THIS IS NOT MOD VALUE
+015E 22               64     RET
+                      65     
+015F                  66     SINGULAR:
+015F C000             67     PUSH 00H
+0161 7870             68     MOV R0 , #70H
+0163 76FF             69     SINGULAR_LOOP:MOV @R0 , #0FFH
+0165 08               70                   INC R0 
+0166 B879FA           71                               CJNE R0 , #79H , SINGULAR_LOOP
+0169 D000             72     POP 00H
+016B 80A0             73     JMP HERE
+                      74     
+016D                  75     COFACTOR:
+016D A964             76     MOV R1 , 64H
+016F AA68             77     MOV R2 , 68H
+0171 AB65             78     MOV R3 , 65H
+0173 AC67             79     MOV R4 , 67H
+0175 12010F           80     LCALL MULT_SUBT
+0178 8D70             81     MOV 70H , R5
+                      82     
+017A A965             83     MOV R1 , 65H
+017C AA66             84     MOV R2 , 66H
+017E AB63             85     MOV R3 , 63H
+0180 AC68             86     MOV R4 , 68H
+0182 12010F           87     LCALL MULT_SUBT
+0185 8D71             88     MOV 71H , R5
+                      89     
+0187 A963             90     MOV R1 , 63H
+0189 AA67             91     MOV R2 , 67H
+018B AB64             92     MOV R3 , 64H
+018D AC66             93     MOV R4 , 66H
+018F 12010F           94     LCALL MULT_SUBT
+0192 8D72             95     MOV 72H , R5
+                      96     
+0194 A962             97     MOV R1 , 62H
+0196 AA67             98     MOV R2 , 67H
+0198 AB61             99     MOV R3 , 61H
+019A AC68            100     MOV R4 , 68H
+019C 12010F          101     LCALL MULT_SUBT
+019F 8D73            102     MOV 73H , R5
+                     103     
+01A1 A960            104     MOV R1 , 60H
+01A3 AA68            105     MOV R2 , 68H
+01A5 AB62            106     MOV R3 , 62H
+01A7 AC66            107     MOV R4 , 66H
+01A9 12010F          108     LCALL MULT_SUBT
+01AC 8D74            109     MOV 74H , R5
+                     110     
+01AE A961            111     MOV R1 , 61H
+01B0 AA66            112     MOV R2 , 66H
+01B2 AB60            113     MOV R3 , 60H
+01B4 AC67            114     MOV R4 , 67H
+01B6 12010F          115     LCALL MULT_SUBT
+01B9 8D75            116     MOV 75H , R5
+                     117     
+01BB A961            118     MOV R1 , 61H
+01BD AA65            119     MOV R2 , 65H
+01BF AB62            120     MOV R3 , 62H
+01C1 AC64            121     MOV R4 , 64H
+01C3 12010F          122     LCALL MULT_SUBT
+01C6 8D76            123     MOV 76H , R5
+A51 MACRO ASSEMBLER  MIDSEM_Q2                                                            02/10/2024 11:27:10 PAGE     3
+
+                     124     
+01C8 A962            125     MOV R1 , 62H
+01CA AA63            126     MOV R2 , 63H
+01CC AB60            127     MOV R3 , 60H
+01CE AC65            128     MOV R4 , 65H
+01D0 12010F          129     LCALL MULT_SUBT
+01D3 8D77            130     MOV 77H , R5
+                     131     
+01D5 A960            132     MOV R1 , 60H
+01D7 AA64            133     MOV R2 , 64H
+01D9 AB61            134     MOV R3 , 61H
+01DB AC63            135     MOV R4 , 63H
+01DD 12010F          136     LCALL MULT_SUBT
+01E0 8D78            137     MOV 78H , R5
+                     138     
+01E2 22              139     RET
+                     140     
+01E3                 141     INVERSE:
+                     142     
+01E3 E571            143     MOV A , 71H
+01E5 8573F0          144     MOV B , 73H
+01E8 F573            145     MOV 73H , A
+01EA 85F071          146     MOV 71H , B
+                     147     
+01ED E572            148     MOV A , 72H
+01EF 8576F0          149     MOV B , 76H
+01F2 F576            150     MOV 76H , A
+01F4 85F072          151     MOV 72H , B
+                     152     
+01F7 E575            153     MOV A , 75H
+01F9 8577F0          154     MOV B , 77H
+01FC F577            155     MOV 77H , A
+01FE 85F075          156     MOV 75H , B
+                     157     
+0201 7870            158     MOV R0 , #70H
+0203 E6              159     INVERSE_LOOP:MOV A , @R0
+0204 FA              160                  MOV R2 , A
+0205 C3              161                              CLR C
+0206 9480            162                              SUBB A , #80H
+0208 500B            163                              JNC TWO_CMPL
+020A EA              164                      MOV A , R2
+020B 8569F0          165                      MOV B , 69H
+020E 84              166                              DIV AB
+020F F6              167                              MOV @R0 , A
+0210 08              168                              INC R0
+0211 B879EF          169                              CJNE R0 , #79H , INVERSE_LOOP
+                     170     
+0214 22              171     RET              
+0215                 172     TWO_CMPL:
+0215 EA              173                             MOV A , R2
+0216 F4              174                             CPL A
+0217 2401            175                             ADD A , #01H
+0219 FA              176                             MOV R2 , A
+021A EA              177                             MOV A , R2
+021B 8569F0          178                     MOV B , 69H
+021E 84              179                             DIV AB
+021F F4              180                             CPL A
+0220 2401            181                             ADD A , #01H
+0222 F6              182                             MOV @R0 , A
+0223 08              183                             INC R0
+0224 B879DC          184                             CJNE R0 , #79H , INVERSE_LOOP    
+0227 22              185     RET              
+                     186     
+                     187     END
+A51 MACRO ASSEMBLER  MIDSEM_Q2                                                            02/10/2024 11:27:10 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+COFACTOR . . . . .  C ADDR   016DH   A   
+DETERMINANT. . . .  C ADDR   011CH   A   
+HERE . . . . . . .  C ADDR   010DH   A   
+INVERSE. . . . . .  C ADDR   01E3H   A   
+INVERSE_LOOP . . .  C ADDR   0203H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+MULT_SUBT. . . . .  C ADDR   010FH   A   
+SINGULAR . . . . .  C ADDR   015FH   A   
+SINGULAR_LOOP. . .  C ADDR   0163H   A   
+TWO_CMPL . . . . .  C ADDR   0215H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

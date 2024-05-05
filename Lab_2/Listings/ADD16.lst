@@ -1,0 +1,63 @@
+A51 MACRO ASSEMBLER  ADD16                                                                01/17/2024 23:55:28 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\ADD16.obj
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE ADD16.a51 SET(SMALL) DEBUG PRINT(.\Listings\ADD16.lst) OBJECT(.\Objects
+                      \ADD16.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+                       4             
+0100                   5     MAIN:
+0100 3130              6     ACALL ADD16
+0102 80FE              7     HERE: SJMP HERE
+0130                   8     ORG 130H
+                       9     
+0130                  10     ADD16:
+0130 757400           11     MOV 74H ,#0H
+0133 A871             12     MOV R0 , 71H
+0135 A970             13     MOV R1 , 70H
+0137 AA73             14     MOV R2 , 73H
+0139 AB72             15     MOV R3 , 72H
+013B E8               16     MOV A  , R0
+013C 2A               17     ADD A  , R2
+013D F576             18     MOV 76H , A
+013F E9               19     MOV A  , R1
+0140 3B               20     ADDC A  , R3
+0141 5002             21     JNC NOCARRY
+0143 0574             22     INC 74H
+0145                  23     NOCARRY:
+0145 F575             24     MOV 75H , A
+0147 22               25     RET
+                      26     END
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+A51 MACRO ASSEMBLER  ADD16                                                                01/17/2024 23:55:28 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ADD16. . . . . . .  C ADDR   0130H   A   
+HERE . . . . . . .  C ADDR   0102H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+NOCARRY. . . . . .  C ADDR   0145H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

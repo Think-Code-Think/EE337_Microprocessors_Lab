@@ -1,0 +1,125 @@
+C51 COMPILER V9.60.7.0   PROJECT                                                           04/10/2024 15:53:23 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE PROJECT
+OBJECT MODULE PLACED IN .\Objects\Project.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE Project.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\P
+                    -roject.lst) TABS(2) OBJECT(.\Objects\Project.obj)
+
+line level    source
+
+   1          /*#include <at89c5131.h>
+   2          
+   3          bit tx_complete = 0;
+   4          bit rx_complete = 0;
+   5          
+   6          void msdelay(unsigned int time)
+   7          {
+   8            int i,j;
+   9            for(i=0;i<time;i++)
+  10            {
+  11              for(j=0;j<382;j++);
+  12            }
+  13          }
+  14          
+  15          void uart_init(void)
+  16          {
+  17            TMOD=0x20;        
+  18            TH1=0xF3;         
+  19            SCON=0x50;        
+  20            TCON=0x40;       
+  21            ES=1;            
+  22            EA=1;           
+  23          }
+  24            
+  25          void transmit_char(unsigned char ch)
+  26          {
+  27            SBUF=ch;        
+  28            while(!tx_complete);      
+  29            tx_complete = 0;     
+  30          }
+  31          
+  32          void transmit_string(unsigned char *s)
+  33          {
+  34            while(*s != 0)
+  35            {
+  36              transmit_char(*s++);
+  37            }
+  38          }
+  39            
+  40          unsigned char receive_char(void)
+  41          {
+  42            unsigned char ch = 0;
+  43            while(!rx_complete);        
+  44            rx_complete = 0;
+  45            ch = SBUF;          
+  46            return ch;          
+  47          }
+  48            
+  49          void serial_ISR(void) interrupt 4
+  50          {
+  51            if(TI==1)     
+  52            {
+  53              TI = 0;     
+  54              tx_complete = 1;  
+C51 COMPILER V9.60.7.0   PROJECT                                                           04/10/2024 15:53:23 PAGE 2   
+
+  55            }
+  56            else if(RI==1)      
+  57            {
+  58              RI = 0;     
+  59              rx_complete = 1;
+  60            }
+  61          }
+  62          
+  63          void main(void)
+  64          {
+  65            unsigned char data_recv[5] = {0,0,0,0,'\0'};
+  66            int sample_val;
+  67            int sample_val_doub;
+  68            unsigned char data_send[5] = {0,0,0,0,'\0'};
+  69            int coefficients[8] = {0,0,0,0,0,0,0,0};
+  70            uart_init();
+  71            int k = 8;
+  72            while (1)
+  73            {
+  74              //receiving sample value from PC
+  75              //since each sample is a 4 digit number, the digits are stored in a character array of length 4  
+  76              data_recv[0] = receive_char();    
+  77              data_recv[1] = receive_char();
+  78              data_recv[2] = receive_char(); 
+  79              data_recv[3] = receive_char();
+  80              data_recv[4] = '\0';
+  81          
+  82              //converting character array to its equivalent integer value
+  83              sample_val = (data_recv[0]-48)*1000 + (data_recv[1]-48)*100 + (data_recv[2]-48)*10 + (data_recv[3]-48);
+  84              
+  85              //doubling the obtained integer value (you need to implement filtering here...)
+  86              sample_val_doub = sample_val * 2; 
+  87              
+  88              //converting integer value back to 4 character array (i.e string)
+  89              data_send[0] = 48 + (sample_val_doub/1000);
+  90              data_send[1] = 48 + (sample_val_doub%1000/100);
+  91              data_send[2] = 48 + (sample_val_doub%100/10);
+  92              data_send[3] = 48 + (sample_val_doub%10);
+  93              
+  94              //transmitting output back to PC
+  95              transmit_string(data_send);
+  96              transmit_string("\r\n");
+  97            }
+  98          }
+  99          */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

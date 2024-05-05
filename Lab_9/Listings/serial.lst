@@ -1,0 +1,106 @@
+C51 COMPILER V9.60.7.0   SERIAL                                                            03/22/2024 22:45:58 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SERIAL
+OBJECT MODULE PLACED IN .\Objects\serial.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE serial.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\se
+                    -rial.lst) TABS(2) OBJECT(.\Objects\serial.obj)
+
+line level    source
+
+   1          
+   2          
+   3          bit tx_complete = 0, rx_complete = 0; // Bit flags for interrupts
+   4          
+   5          /**********************************************************
+   6          uart_init(): 
+   7            Initialization function to be completed
+   8            Initializes UART peripheral for 8-bit transfer, 
+   9            1 start and 1 stop bit. 
+  10            
+  11            Please write TH1 value for required baud rate
+  12          ***********************************************************/  
+  13          void uart_init(void)
+  14          {
+  15   1        TMOD = 0x20;          // Configure Timer 1 in Mode 2
+*** ERROR C202 IN LINE 15 OF serial.c: 'TMOD': undefined identifier
+  16   1        TH1 = 0xE8;           // Load TH1 to obtain require Baudrate (Refer serial_io.pdf for calculations)
+*** ERROR C202 IN LINE 16 OF serial.c: 'TH1': undefined identifier
+  17   1        SCON = 0x50;          // Configure UART peripheral for 8-bit data transfer 
+*** ERROR C202 IN LINE 17 OF serial.c: 'SCON': undefined identifier
+  18   1        TR1 = 1;              // Start Timer 1
+*** ERROR C202 IN LINE 18 OF serial.c: 'TR1': undefined identifier
+  19   1        ES = 1;               // Enable Serial Interrupt
+*** ERROR C202 IN LINE 19 OF serial.c: 'ES': undefined identifier
+  20   1        EA = 1;               // Enable Global Interrupt
+*** ERROR C202 IN LINE 20 OF serial.c: 'EA': undefined identifier
+  21   1      }
+  22          
+  23          /**********************************************************
+  24          transmit_char(<unsigned char ch>): 
+  25            Transmits a character using UART
+  26          ***********************************************************/  
+  27          void transmit_char(unsigned char ch)
+  28          {
+  29   1        SBUF = ch;                // Load data in SBUF
+*** ERROR C202 IN LINE 29 OF serial.c: 'SBUF': undefined identifier
+  30   1        while(!tx_complete);      // Wait for tx_complete flag (interrupt to complete)
+  31   1        tx_complete = 0;          // Clear tx_complete flag 
+  32   1      }
+  33          
+  34          /**********************************************************
+  35          transmit_string(<String pointer>): 
+  36            Transmit a string using UART
+  37          ***********************************************************/  
+  38          void transmit_string(unsigned char *s)
+  39          {
+  40   1        while(*s != 0)
+  41   1        {
+  42   2            transmit_char(*s++);
+  43   2        }
+  44   1      }
+  45          
+  46          /**********************************************************
+  47          receive_char(): 
+C51 COMPILER V9.60.7.0   SERIAL                                                            03/22/2024 22:45:58 PAGE 2   
+
+  48            Receives a character through UART. Returns a 
+  49            character.
+  50          ***********************************************************/    
+  51          unsigned char receive_char(void)
+  52          {
+  53   1        unsigned char ch = 0;
+  54   1        while(!rx_complete);        // Wait for rx_complete(interrupt to complete)
+  55   1        rx_complete = 0;
+  56   1        ch = SBUF;                  // Read data from SBUF
+*** ERROR C202 IN LINE 56 OF serial.c: 'SBUF': undefined identifier
+  57   1        return ch;                  // Return read character
+  58   1      }
+  59          
+  60          /**********************************************************
+  61          Serial_ISR(): 
+  62            Interrupt service routine for UART interrupt.
+  63            Determines whether it is a transmit or receive
+  64            interrupt and raise corresponding flag.
+  65            Transmit or receive functions (defined above) monitor
+  66            for these flags to check if data transfer is done.
+  67          ***********************************************************/  
+  68          void serial_ISR(void) interrupt 4
+  69          {
+  70   1          if(TI==1)     // Check whether TI is set
+*** ERROR C202 IN LINE 70 OF serial.c: 'TI': undefined identifier
+  71   1          {
+  72   2            TI = 0;     // Clear TI flag
+*** ERROR C202 IN LINE 72 OF serial.c: 'TI': undefined identifier
+  73   2            tx_complete = 1;  // Set tx_complete flag indicating interrupt completion
+  74   2          }
+  75   1          else if(RI==1)      // Check whether RI is set
+*** ERROR C202 IN LINE 75 OF serial.c: 'RI': undefined identifier
+  76   1          {
+  77   2            RI = 0;     // Clear RI flag
+*** ERROR C202 IN LINE 77 OF serial.c: 'RI': undefined identifier
+  78   2            rx_complete = 1;  // Set rx_complete flag indicating interrupt completion
+  79   2          }
+  80   1      }
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  12 ERROR(S)

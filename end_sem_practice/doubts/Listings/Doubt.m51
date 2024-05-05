@@ -1,0 +1,58 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    04/03/2024  20:42:18  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\Doubt.obj TO .\Objects\Doubt PRINT (.\Listings\Doubt.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Doubt.obj (DOUBT)
+
+
+LINK MAP OF MODULE:  .\Objects\Doubt (DOUBT)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0119H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Doubt (DOUBT)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        DOUBT
+  C:0112H         SYMBOL        CHECK
+  C:0100H         SYMBOL        MAIN
+  C:010BH         SYMBOL        READT0
+  B:0088H.5       SYMBOL        TF0
+  D:008CH         SYMBOL        TH0
+  D:008AH         SYMBOL        TL0
+  D:0089H         SYMBOL        TMOD
+  B:0088H.4       SYMBOL        TR0
+  C:0000H         LINE#         2
+  C:0100H         LINE#         5
+  C:0103H         LINE#         6
+  C:0106H         LINE#         7
+  C:0109H         LINE#         8
+  C:010BH         LINE#         10
+  C:010DH         LINE#         11
+  C:010FH         LINE#         12
+  C:0112H         LINE#         14
+  C:0115H         LINE#         15
+  C:0117H         LINE#         16
+  -------         ENDMOD        DOUBT
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 001CH BYTE ( 1%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=281
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

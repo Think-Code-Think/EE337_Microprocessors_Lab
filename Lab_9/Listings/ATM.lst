@@ -1,0 +1,206 @@
+C51 COMPILER V9.60.7.0   ATM                                                               04/02/2024 13:38:28 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE ATM
+OBJECT MODULE PLACED IN .\Objects\ATM.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ATM.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\ATM.l
+                    -st) TABS(2) OBJECT(.\Objects\ATM.obj)
+
+line level    source
+
+   1          #include <at89c5131.h>
+   2          #include "lcd.h"    // Header file with LCD interfacing functions
+*** WARNING C235 IN LINE 98 OF lcd.h: parameter 1: different types
+   3          #include "serial_atm.h" // Header file with UART interfacing functions
+   4          
+   5          
+   6          char a_c1_money[6]={0,0,0,0,0,'\0'};
+   7          char a_c2_money[6]={0,0,0,0,0,'\0'};
+   8          char five_hundred_notes[6] = {0,0,0,0,0,'\0'};
+   9          char one_hundred_notes[6] = {0,0,0,0,0,'\0'};
+  10          
+  11          
+  12          // Main function
+  13          void main(void)
+  14          {
+  15   1        unsigned char ch=0;
+  16   1        unsigned char ac;
+  17   1        unsigned char units;
+  18   1        unsigned char tens;
+  19   1        int unit;
+  20   1        int ten;
+  21   1        int amount;
+  22   1        int five;
+  23   1        int one;
+  24   1        int ac1_money = 10000;
+  25   1        int ac2_money = 10000;
+  26   1      
+  27   1        // Call initialization functions
+  28   1        lcd_init();
+  29   1        uart_init();
+  30   1      
+  31   1        // These strings will be printed in terminal software
+  32   1        
+  33   1        while(1)
+  34   1        {
+  35   2            // Receive a character
+  36   2            // ch = receive_char();
+  37   2            // Decide which test function to run based on character sent
+  38   2            // Displays the string on the terminal software
+  39   2            switch(ch)
+  40   2            {
+  41   3              case 'A':
+  42   3              case 'a':
+  43   3                transmit_string("Hello, Please enter Account Number\r\n");
+  44   3                ac = receive_char();
+  45   3                switch(ac)
+  46   3                {
+  47   4                  case '1':
+  48   4                  transmit_string("Account Holder: Steven\r\n");
+  49   4                  transmit_string("Account Balance: ");
+  50   4                  int_to_string(ac1_money,a_c1_money);
+  51   4                  transmit_string(a_c1_money);
+  52   4                  transmit_string("\r\n");
+  53   4                  ch = 0;
+C51 COMPILER V9.60.7.0   ATM                                                               04/02/2024 13:38:28 PAGE 2   
+
+  54   4                  break;
+  55   4                  
+  56   4                  case '2':
+  57   4                  transmit_string("Account Holder: Gordon\r\n");
+  58   4                  transmit_string("Account Balance: ");
+  59   4                  int_to_string(ac2_money,a_c2_money);
+  60   4                  transmit_string(a_c2_money);
+  61   4                  transmit_string("\r\n");
+  62   4                  ch = 0;
+  63   4                  break;
+  64   4                  
+  65   4                  default:
+  66   4                  transmit_string("No such account, please enter valid details\r\n");
+  67   4                  ch = 0;
+  68   4                  break;
+  69   4                }
+  70   3              
+  71   3                break;
+  72   3              
+  73   3              case 'W':
+  74   3              case 'w':
+  75   3                transmit_string("Withdraw state, enter account number\r\n");
+  76   3                ac = receive_char();
+  77   3                switch(ac)
+  78   3                {
+  79   4                  case '1':
+  80   4                  transmit_string("Account Holder: Steven\r\n");
+  81   4                  transmit_string("Account Balance: ");
+  82   4                  int_to_string(ac1_money,a_c1_money);
+  83   4                  transmit_string(a_c1_money);
+  84   4                  transmit_string("\r\n");
+  85   4                  transmit_string("Enter Amount, in hundreds\r\n");
+  86   4                  tens = receive_char();
+  87   4                  units = receive_char();
+  88   4                  ten = (int)tens - 48;
+  89   4                  unit = (int)units - 48;
+  90   4                  if(ten > 10 | ten < 0 | unit > 10 | unit < 0 )
+  91   4                  {
+  92   5                  transmit_string("Invalid Amount\r\n");
+  93   5                  ch =0;
+  94   5                  break;
+  95   5                  }
+  96   4                  amount = (ten * 10 + unit * 1)*100;
+  97   4                  if(amount >  ac1_money)
+  98   4                  {
+  99   5                  transmit_string("Insufficient Funds\r\n");
+ 100   5                   ch =0;
+ 101   5                  break;
+ 102   5                  }
+ 103   4                  ac1_money = ac1_money - amount;
+ 104   4                  five = amount/500;
+ 105   4                  one=(amount%500)/100;
+ 106   4                  transmit_string("Remaining Balance: ");
+ 107   4                  int_to_string(ac1_money,a_c1_money);
+ 108   4                  transmit_string(a_c1_money);
+ 109   4                  transmit_string("\r\n");
+ 110   4                  transmit_string("500 Notes: ");
+ 111   4                  int_to_string(five,five_hundred_notes);
+ 112   4                  transmit_string(five_hundred_notes);
+ 113   4                  transmit_string("\r\n");
+ 114   4                  transmit_string("100 Notes: ");
+ 115   4                  int_to_string(one,one_hundred_notes);
+C51 COMPILER V9.60.7.0   ATM                                                               04/02/2024 13:38:28 PAGE 3   
+
+ 116   4                  transmit_string(one_hundred_notes);
+ 117   4                  transmit_string("\r\n");
+ 118   4                  ch =0;
+ 119   4                  break;
+ 120   4                  
+ 121   4                  case '2':
+ 122   4                  transmit_string("Account Holder: Gordon\r\n");
+ 123   4                  transmit_string("Account Balance: ");
+ 124   4                  int_to_string(ac2_money,a_c2_money);
+ 125   4                  transmit_string(a_c2_money);
+ 126   4                  transmit_string("\r\n");
+ 127   4                  transmit_string("Enter Amount, in hundreds\r\n");
+ 128   4                  tens = receive_char();
+ 129   4                  units = receive_char();
+ 130   4                  ten = (int)tens - 48;
+ 131   4                  unit = (int)units - 48;
+ 132   4                  if(ten > 10 | ten < 0 | unit > 10 | unit < 0 )
+ 133   4                  {
+ 134   5                  ch =0;
+ 135   5                  break;
+ 136   5                  }
+ 137   4                  amount = (ten * 10 + unit * 1)*100;
+ 138   4                  if(amount >  ac2_money)
+ 139   4                  {
+ 140   5                   ch =0;
+ 141   5                  break;
+ 142   5                  }
+ 143   4                  ac2_money = ac2_money - amount;
+ 144   4                  five = amount/500;
+ 145   4                  one=(amount%500)/100;
+ 146   4                  transmit_string("Remaining Balance: ");
+ 147   4                  int_to_string(ac2_money,a_c2_money);
+ 148   4                  transmit_string(a_c2_money);
+ 149   4                  transmit_string("\r\n");
+ 150   4                  transmit_string("500 Notes: ");
+ 151   4                  int_to_string(five,five_hundred_notes);
+ 152   4                  transmit_string(five_hundred_notes);
+ 153   4                  transmit_string("\r\n");
+ 154   4                  transmit_string("100 Notes: ");
+ 155   4                  int_to_string(one,one_hundred_notes);
+ 156   4                  transmit_string(one_hundred_notes);
+ 157   4                  transmit_string("\r\n");
+ 158   4                  ch =0;
+ 159   4                  break;
+ 160   4                  
+ 161   4                  default:
+ 162   4                  transmit_string("No such account, please enter valid details\r\n");
+ 163   4                  break;
+ 164   4                }
+ 165   3                
+ 166   3                break;
+ 167   3                    
+ 168   3              default:
+ 169   3                transmit_string("Press A for Account display and W for withdrawing cash\r\n");
+ 170   3                ch = receive_char();
+ 171   3                break;
+ 172   3            }
+ 173   2            msdelay(100);
+ 174   2        }
+ 175   1      }
+
+
+C51 COMPILER V9.60.7.0   ATM                                                               04/02/2024 13:38:28 PAGE 4   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1374    ----
+   CONSTANT SIZE    =    360    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     24      29
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

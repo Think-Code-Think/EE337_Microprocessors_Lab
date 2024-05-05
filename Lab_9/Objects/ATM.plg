@@ -1,0 +1,109 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\student\Desktop\Lab_9\ATM.uvproj
+Project File Date:  03/26/2024
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling ATM.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=35.2 xdata=0 code=1305
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling ATM.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=35.2 xdata=0 code=1305
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling ATM.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=35.2 xdata=0 code=1361
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling ATM.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=35.2 xdata=0 code=1326
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=35.2 xdata=0 code=1326
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling ATM.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=35.2 xdata=0 code=1542
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling ATM.c...
+lcd.h(98): warning C235: parameter 1: different types
+ATM.c(108): error C100: unprintable character 0x93 skipped
+ATM.c(108): error C141: syntax error near 'Notes'
+ATM.c(108): error C202: 'XX': undefined identifier
+ATM.c(108): error C141: syntax error near 'Notes'
+ATM.c(108): error C100: unprintable character 0x94 skipped
+ATM.c(109): error C141: syntax error near 'transmit_string'
+Target not created
+Build target 'Target 1'
+compiling ATM.c...
+lcd.h(98): warning C235: parameter 1: different types
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=51.2 xdata=0 code=1766
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling ATM.c...
+lcd.h(98): warning C235: parameter 1: different types
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=59.2 xdata=0 code=2098
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling ATM.c...
+lcd.h(98): warning C235: parameter 1: different types
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=59.2 xdata=0 code=2148
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling ATM.c...
+lcd.h(98): warning C235: parameter 1: different types
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=59.2 xdata=0 code=2151
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_WRITE_STRING?ATM
+Program Size: data=59.2 xdata=0 code=2151
+creating hex file from ".\Objects\ATM"...
+".\Objects\ATM" - 0 Error(s), 1 Warning(s).

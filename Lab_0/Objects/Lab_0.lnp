@@ -1,0 +1,4 @@
+".\Objects\Demo.obj",
+".\Objects\SQUARE_WAVE.obj" 
+TO ".\Objects\Lab_0" 
+PRINT(".\Listings\Lab_0.m51") RAMSIZE(256) 

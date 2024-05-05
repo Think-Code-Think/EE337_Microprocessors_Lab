@@ -1,0 +1,3 @@
+".\Objects\Doubt.obj" 
+TO ".\Objects\Doubt" 
+PRINT(".\Listings\Doubt.m51") RAMSIZE(256) 

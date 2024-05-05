@@ -1,0 +1,235 @@
+A51 MACRO ASSEMBLER  MIDSEM_23                                                            02/10/2024 08:56:31 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\midsem_23.obj
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE midsem_23.a51 SET(SMALL) DEBUG PRINT(.\Listings\midsem_23.lst) OBJECT(.
+                      \Objects\midsem_23.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+                       4     
+0100                   5     MAIN:
+0100 120114            6     LCALL PRIVATE_KEY_INIT
+0103 120186            7     LCALL KEY_D
+0106 1201B5            8     LCALL LED_DISP
+0109 120131            9     LCALL DECRPYT_INIT
+010C 12016A           10     LCALL EXPO
+010F 120149           11     LCALL KEY_M
+0112 80FE             12     HERE: SJMP HERE
+                      13     
+                      14     
+0114                  15     PRIVATE_KEY_INIT:
+0114 757313           16     MOV 73H , #19
+0117 75740D           17     MOV 74H , #13
+011A E573             18     MOV A , 73H
+011C C3               19     CLR  C
+011D 9401             20     SUBB A , #1
+011F F8               21     MOV R0 , A
+0120 C3               22     CLR C
+0121 E574             23     MOV A , 74H
+0123 9401             24     SUBB A , #1
+0125 F9               25     MOV R1 , A
+0126 C3               26     CLR C
+0127 E8               27     MOV A , R0
+0128 89F0             28     MOV B , R1
+012A A4               29     MUL AB
+012B F570             30     MOV 70H , A
+012D 7571AD           31     MOV 71H , #173
+0130 22               32     RET
+                      33     
+0131                  34     DECRPYT_INIT:
+0131 757313           35     MOV 73H , #19
+0134 75740D           36     MOV 74H , #13
+0137 E573             37     MOV A , 73H
+0139 8574F0           38     MOV B , 74H
+013C A4               39     MUL AB 
+013D F570             40     MOV 70H , A
+013F 75900F           41     MOV P1 , #0FH
+0142 859071           42     MOV 71H , P1
+0145 757106           43     MOV 71H , #6
+0148 22               44     RET
+                      45     
+0149                  46     KEY_M:
+0149 AA69             47     MOV R2 , 69H
+014B AB68             48     MOV R3 , 68H
+014D 7900             49     MOV R1 , #0
+014F C3               50     DIVIDE_M:       CLR C
+0150 EA               51             MOV A , R2 
+0151 9570             52                     SUBB A , 70H
+0153 FA               53                     MOV R2 , A
+0154 EB               54                     MOV A , R3
+0155 9400             55                     SUBB A , #0
+0157 FB               56                     MOV R3 , A
+0158 09               57                     INC R1
+A51 MACRO ASSEMBLER  MIDSEM_23                                                            02/10/2024 08:56:31 PAGE     2
+
+0159 BB00F3           58                     CJNE R3 , #0 , DIVIDE_M
+015C BA0001           59                     CJNE R2 , #0 , FORWARD_M
+015F 22               60                     RET
+0160 EA               61     FORWARD_M:MOV A , R2
+0161 C3               62                     CLR C
+0162 9570             63                     SUBB A , 70H
+0164 50E9             64                     JNC DIVIDE_M
+0166 8A73             65                     MOV 73H , R2
+0168 22               66     RET
+                      67     
+                      68     
+                      69     
+0169 22               70     RET
+                      71     
+                      72     
+016A                  73     EXPO:
+016A A872             74     MOV R0 , 72H; D
+016C A971             75     MOV R1 , 71H; C
+016E 7A00             76     MOV R2 , #0  ; UPPER BYTE
+0170 AB71             77     MOV R3 , 71H  ; LOWER BYTE
+0172 E9               78     EXPO_LOOP:MOV A , R1
+0173 8BF0             79                       MOV B , R3
+0175 A4               80                       MUL AB
+0176 ACF0             81                       MOV R4 , B
+0178 FB               82                       MOV R3 , A
+0179 E9               83                       MOV A , R1
+017A 8AF0             84                       MOV B , R2
+017C A4               85                       MUL AB
+017D 2C               86                       ADD A , R4
+017E FA               87                       MOV R2 , A
+017F D8F1             88                       DJNZ R0 , EXPO_LOOP
+0181 8A68             89                       MOV 68H , R2 ;upper
+0183 8B69             90                       MOV 69H , R3 ;lower
+0185 22               91     RET
+                      92     
+                      93     
+0186                  94     KEY_D:
+0186 7801             95     MOV R0 , #1
+0188 7900             96     LOOP:   MOV R1 , #0 ; R1 IS MY QUOTIENT
+018A E570             97                     MOV A , 70H ;
+018C 88F0             98                     MOV B , R0
+018E A4               99                     MUL AB
+018F 2401            100                     ADD A , #1
+0191 FA              101                     MOV R2 , A ; LOWER BYTE
+0192 E5F0            102                     MOV A , B
+0194 3400            103                     ADDC A , #0
+0196 FB              104                     MOV R3 , A ; UPPER BYTE
+0197 C3              105     DIVIDE: CLR C
+0198 EA              106             MOV A , R2 
+0199 9571            107                     SUBB A , 71H
+019B FA              108                     MOV R2 , A
+019C EB              109                     MOV A , R3
+019D 9400            110                     SUBB A , #0
+019F FB              111                     MOV R3 , A
+01A0 09              112                     INC R1
+01A1 BB00F3          113                     CJNE R3 , #0 , DIVIDE
+01A4 BA0003          114                     CJNE R2 , #0 , FORWARD
+01A7 8972            115                     MOV 72H , R1
+01A9 22              116                     RET
+01AA EA              117     FORWARD:MOV A , R2
+01AB C3              118                     CLR C
+01AC 9571            119                     SUBB A , 71H
+01AE 50E7            120                     JNC DIVIDE
+01B0 08              121                     INC R0
+01B1 B8FFD4          122                     CJNE R0 , #255 , LOOP 
+01B4 22              123     RET
+A51 MACRO ASSEMBLER  MIDSEM_23                                                            02/10/2024 08:56:31 PAGE     3
+
+                     124     
+01B5                 125     LED_DISP:
+01B5 E572            126     MOV A , 72H
+01B7 F590            127     MOV P1 , A 
+01B9 1201D2          128     LCALL DELAY_5s
+01BC 759000          129     MOV P1, #00H
+01BF 1201E5          130     LCALL DELAY_1s
+01C2 23              131     RL A
+01C3 23              132     RL A
+01C4 23              133     RL A
+01C5 23              134     RL A
+01C6 F590            135     MOV P1 , A 
+01C8 1201D2          136     LCALL DELAY_5s
+01CB 759000          137     MOV P1, #00H
+01CE 1201E5          138     LCALL DELAY_1s
+01D1 22              139     RET
+                     140     
+01D2                 141     DELAY_5s:
+01D2 C000            142     push 00h
+01D4 C001            143     push 01h
+01D6 7932            144     mov r1, #50
+01D8 7864            145     h5: mov r0, #100
+01DA 31F8            146     h6: acall delay_1ms
+01DC D8FC            147     djnz r0, h6
+01DE D9F8            148     djnz r1, h5
+01E0 D001            149     pop 01h
+01E2 D000            150     pop 00h
+01E4 22              151     RET
+                     152     
+01E5                 153     DELAY_1s:
+01E5 C000            154     push 00h
+01E7 C001            155     push 01h
+01E9 790A            156     mov r1, #10
+01EB 7864            157     h3: mov r0, #100
+01ED 31F8            158     h4: acall delay_1ms
+01EF D8FC            159     djnz r0, h4
+01F1 D9F8            160     djnz r1, h3
+01F3 D001            161     pop 01h
+01F5 D000            162     pop 00h
+01F7 22              163     RET
+                     164     
+                     165     
+01F8                 166     delay_1ms:
+01F8 C000            167     push 00h
+01FA 7804            168     mov r0, #4
+01FC 5103            169     h2: acall delay_250us
+01FE D8FC            170     djnz r0, h2
+0200 D000            171     pop 00h
+0202 22              172     ret
+                     173     
+0203                 174     delay_250us:
+0203 C000            175     push 00h
+0205 78F4            176     mov r0, #244
+0207 D8FE            177     h1: djnz r0, h1
+0209 D000            178     pop 00h
+020B 22              179     ret
+                     180     
+                     181     END
+A51 MACRO ASSEMBLER  MIDSEM_23                                                            02/10/2024 08:56:31 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+DECRPYT_INIT . . .  C ADDR   0131H   A   
+DELAY_1MS. . . . .  C ADDR   01F8H   A   
+DELAY_1S . . . . .  C ADDR   01E5H   A   
+DELAY_250US. . . .  C ADDR   0203H   A   
+DELAY_5S . . . . .  C ADDR   01D2H   A   
+DIVIDE . . . . . .  C ADDR   0197H   A   
+DIVIDE_M . . . . .  C ADDR   014FH   A   
+EXPO . . . . . . .  C ADDR   016AH   A   
+EXPO_LOOP. . . . .  C ADDR   0172H   A   
+FORWARD. . . . . .  C ADDR   01AAH   A   
+FORWARD_M. . . . .  C ADDR   0160H   A   
+H1 . . . . . . . .  C ADDR   0207H   A   
+H2 . . . . . . . .  C ADDR   01FCH   A   
+H3 . . . . . . . .  C ADDR   01EBH   A   
+H4 . . . . . . . .  C ADDR   01EDH   A   
+H5 . . . . . . . .  C ADDR   01D8H   A   
+H6 . . . . . . . .  C ADDR   01DAH   A   
+HERE . . . . . . .  C ADDR   0112H   A   
+KEY_D. . . . . . .  C ADDR   0186H   A   
+KEY_M. . . . . . .  C ADDR   0149H   A   
+LED_DISP . . . . .  C ADDR   01B5H   A   
+LOOP . . . . . . .  C ADDR   0188H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+PRIVATE_KEY_INIT .  C ADDR   0114H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,49 @@
+A51 MACRO ASSEMBLER  LARGEST                                                              04/03/2024 20:04:33 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\LARGEST.obj
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE LARGEST.a51 SET(SMALL) DEBUG PRINT(.\Listings\LARGEST.lst) OBJECT(.\Obj
+                      ects\LARGEST.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+0000                   2     ORG 0H
+0000 020100            3     LJMP MAIN
+0100                   4     ORG 100H
+0100                   5     MAIN:
+0100                   6     READT0:
+0100 E58C              7     MOV A , TH0
+0102 A88A              8     MOV R0 , TL0
+0104 B58CF9            9     CJNE A ,TH0 , READT0
+0107 80FE             10     HERE: SJMP HERE
+                      11     END
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+A51 MACRO ASSEMBLER  LARGEST                                                              04/03/2024 20:04:33 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+HERE . . . . . . .  C ADDR   0107H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+READT0 . . . . . .  C ADDR   0100H   A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

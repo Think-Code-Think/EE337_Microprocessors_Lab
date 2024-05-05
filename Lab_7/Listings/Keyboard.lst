@@ -1,0 +1,374 @@
+C51 COMPILER V9.60.7.0   KEYBOARD                                                          03/12/2024 15:55:25 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE KEYBOARD
+OBJECT MODULE PLACED IN .\Objects\Keyboard.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE Keyboard.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -Keyboard.lst) TABS(2) OBJECT(.\Objects\Keyboard.obj)
+
+line level    source
+
+   1          #include <at89c5131.h>
+   2          /*************************************************
+   3            lcd.h: Header file for 16x2 LCD interfacing  
+   4          **************************************************/
+   5          
+   6          //Functions contained in this header file
+   7          void msdelay(unsigned int);                                 //fn takes integer value as an input and generates correspondi
+             -ng delay in milli seconds
+   8          void lcd_init(void);                                        //Initialize LCD
+   9          void lcd_cmd(unsigned int i);                               //Sends commands to lcd
+  10          void lcd_char(unsigned char ch);                            //display character on a lcd corresponding to input ascii
+  11          void lcd_write_string(unsigned char *s);                    //takes pointer of a string which ends with null and dis
+             -play on a lcd 
+  12          //void lcd_print (row, column, value, digits)
+  13          
+  14          
+  15          //Signals to LCD
+  16          sbit RS=P0^0; //Register select
+  17          sbit RW=P0^1; //Read from or write to register
+  18          sbit EN=P0^2; //Enable pin of lcd
+  19          
+  20          
+  21          //Function definitions
+  22          /************************************************
+  23             lcd_init():
+  24            Initializes LCD port and 
+  25            LCD display parameters
+  26          ************************************************/
+  27          void lcd_init(void)
+  28          {
+  29   1        P2=0x00;
+  30   1        EN=0;
+  31   1        RS=0;
+  32   1        RW=0;
+  33   1        
+  34   1        lcd_cmd(0x38);  // Function set: 2 Line, 8-bit, 5x7 dots
+  35   1        msdelay(4);
+  36   1        lcd_cmd(0x06);  // Entry mode, auto increment with no shift
+  37   1        msdelay(4);
+  38   1        lcd_cmd(0x0C);  // Display on, Curson off
+  39   1        msdelay(4);
+  40   1        lcd_cmd(0x01);  // LCD clear
+  41   1        msdelay(4);
+  42   1        lcd_cmd(0x80);  //Move cursor to Row 1 column 0
+  43   1      }
+  44          
+  45          /**********************************************************
+  46             msdelay(<time_val>): 
+  47            Delay function for delay value <time_val>ms
+  48          ***********************************************************/  
+  49          void msdelay(unsigned int time)
+  50          {
+  51   1        int i,j;
+  52   1        for(i=0;i<time;i++)
+C51 COMPILER V9.60.7.0   KEYBOARD                                                          03/12/2024 15:55:25 PAGE 2   
+
+  53   1        {
+  54   2          for(j=0;j<382;j++);
+  55   2        }
+  56   1      }
+  57          
+  58          /**********************************************************
+  59              lcd_cmd(<char command>):
+  60            Sends 8 bit command
+  61            LCD display parameters
+  62          ***********************************************************/  
+  63          void lcd_cmd(unsigned int i)
+  64          {
+  65   1        RS=0;
+  66   1        RW=0;
+  67   1        EN=1;
+  68   1        P2=i;
+  69   1        msdelay(10);
+  70   1        EN=0;
+  71   1      }
+  72          
+  73          
+  74          /**********************************************************
+  75             lcd_write_char(<char data>):
+  76            Sends 8 bit character(ASCII)
+  77            to be printed on LCD
+  78          ***********************************************************/  
+  79          void lcd_write_char(unsigned char ch)
+  80          {
+  81   1        RS=1;
+  82   1        RW=0;
+  83   1        EN=1;
+  84   1        P2=ch;
+  85   1        msdelay(10);
+  86   1        EN=0;
+  87   1      }
+  88          
+  89          
+  90          /***********************************************************
+  91            lcd_write_string(<string pointer>):
+  92            Prints string on LCD. Requires string pointer 
+  93            as input argument.
+  94          ***********************************************************/  
+  95          void lcd_write_string(unsigned char *s)
+  96          {
+  97   1        while(*s!='\0')
+  98   1        {
+  99   2          lcd_write_char(*s++);
+ 100   2        }
+ 101   1      }
+ 102          
+ 103          
+ 104          
+ 105          code unsigned char display_msg0[]="    Keyboard    "; 
+ 106          code unsigned char display_msg1[]="     Sa(low)    ";           //Display msg on 1st line of lcd
+ 107          code unsigned char display_msg2[]="       Re       ";           //Display msg on 2st line of lcd
+ 108          code unsigned char display_msg3[]="       Ga       ";   
+ 109          code unsigned char display_msg4[]="       Ma       ";   
+ 110          code unsigned char display_msg5[]="       Pa       ";   
+ 111          code unsigned char display_msg6[]="      Dha       ";   
+ 112          code unsigned char display_msg7[]="       Ni       ";   
+ 113          code unsigned char display_msg8[]="     Sa(high)   ";   
+ 114          code unsigned char display_msg9[]="     Silence    ";   
+C51 COMPILER V9.60.7.0   KEYBOARD                                                          03/12/2024 15:55:25 PAGE 3   
+
+ 115          
+ 116          sbit ROW1=P3^4;
+ 117          sbit ROW2=P3^5;
+ 118          sbit ROW3=P3^6;
+ 119          sbit ROW4=P3^7;
+ 120          sbit COL1=P3^0;
+ 121          sbit COL2=P3^1;
+ 122          sbit COL3=P3^2;
+ 123          sbit COL4=P3^3;
+ 124          
+ 125          int TEMP1;
+ 126          int TEMP2;
+ 127          int TEMP3;
+ 128          int TEMP4;
+ 129          
+ 130          sbit music=P0^7;
+ 131          
+ 132          int freq[8] = {240,270,300,318,356,394,442,470};
+ 133          //int dur[9] = {500,750,1000,500,1000,750,1000,500};
+ 134          
+ 135          int count_freq;
+ 136          
+ 137          
+ 138          void note(int freq)
+ 139          {
+ 140   1        count_freq = (int) (65534 - (1000000/(freq-1)));
+ 141   1        TH0 = count_freq/256;
+ 142   1        TL0 = count_freq%256;
+ 143   1        TR0 = 1;
+ 144   1      }
+ 145          
+ 146          void musical_note () interrupt 1
+ 147          { 
+ 148   1        music = ~music;
+ 149   1        TH0 = count_freq/256;
+ 150   1        TL0 = count_freq%256; 
+ 151   1      }
+ 152          
+ 153          
+ 154          void debounce_delay(void)
+ 155          {
+ 156   1        int a,b;
+ 157   1        for(a=0;a<20;a++)
+ 158   1        {
+ 159   2          for(b=0;b<382;b++);
+ 160   2        }
+ 161   1        
+ 162   1      }
+ 163          
+ 164          //Main function
+ 165          void main(void)
+ 166          {
+ 167   1        
+ 168   1        while(1)
+ 169   1        {
+ 170   2         ROW1 = 0;
+ 171   2         ROW2 = 0;
+ 172   2         ROW3 = 0;
+ 173   2         ROW4 = 0;
+ 174   2         do{
+ 175   3         do{
+ 176   4         P3 = P3 & 0X0F;
+C51 COMPILER V9.60.7.0   KEYBOARD                                                          03/12/2024 15:55:25 PAGE 4   
+
+ 177   4         }
+ 178   3         while(COL1 & COL2 & COL3 & COL4 == 0);
+ 179   3         do{P3 = P3 & 0X0F;}
+ 180   3         while(COL1 & COL2 & COL3 & COL4 != 0);
+ 181   3         debounce_delay();
+ 182   3         P3 = P3 & 0X0F;
+ 183   3       }
+ 184   2         while(COL1 & COL2 & COL3 & COL4 != 0);  
+ 185   2         
+ 186   2         ROW1 = 1;
+ 187   2         ROW2 = 1;
+ 188   2         ROW3 = 1;
+ 189   2         ROW4 = 0;
+ 190   2         
+ 191   2         do
+ 192   2         {
+ 193   3         TEMP1 = ROW1;
+ 194   3         TEMP2 = ROW2;
+ 195   3         TEMP3 = ROW3;
+ 196   3         TEMP4 = ROW4;
+ 197   3          
+ 198   3         ROW1 = TEMP4;
+ 199   3         ROW2 = TEMP1;
+ 200   3         ROW3 = TEMP2;
+ 201   3         ROW4 = TEMP3;
+ 202   3         P3 = P3 & 0XFF;
+ 203   3         }
+ 204   2         while(COL1 & COL2 & COL3 & COL4 != 0);
+ 205   2         
+ 206   2           //activate global interrupts
+ 207   2         
+ 208   2         switch (P3)
+ 209   2         {
+ 210   3           case 0XEE:
+ 211   3             lcd_init();
+ 212   3             lcd_cmd(0x80);                         //Move cursor to first line
+ 213   3             msdelay(4);
+ 214   3             lcd_write_string(display_msg0);
+ 215   3             msdelay(1000); 
+ 216   3            
+ 217   3             break;
+ 218   3           
+ 219   3           case 0XED:
+ 220   3             lcd_init();
+ 221   3             lcd_cmd(0x80);                         //Move cursor to first line
+ 222   3             msdelay(4);
+ 223   3             lcd_write_string(display_msg1);
+ 224   3             TMOD = 0x11; //mode 1 timer 0 and timer 1
+ 225   3             ET0 = 1;
+ 226   3             EA = 1;
+ 227   3             count_freq = (int) (65534 - (1000000/(freq[0]-1)));
+ 228   3             TH0 = count_freq/256;
+ 229   3             TL0 = count_freq%256;
+ 230   3             TR0= 1;
+ 231   3             while(P3 == 0XED);
+ 232   3             TR0= 0;
+ 233   3             break;
+ 234   3           
+ 235   3           case 0XEB:
+ 236   3             lcd_init();
+ 237   3             lcd_cmd(0x80);                         //Move cursor to first line
+ 238   3             msdelay(4);
+C51 COMPILER V9.60.7.0   KEYBOARD                                                          03/12/2024 15:55:25 PAGE 5   
+
+ 239   3             lcd_write_string(display_msg2);
+ 240   3             TMOD = 0x11; //mode 1 timer 0 and timer 1
+ 241   3             ET0 = 1; //activate interrupts for timer 0 and timer 1
+ 242   3             EA = 1;
+ 243   3             
+ 244   3             note(freq[1]);
+ 245   3             while(P3 == 0XEB);
+ 246   3             TR0= 0;
+ 247   3             break;
+ 248   3           
+ 249   3           case 0XE7:
+ 250   3             lcd_init();
+ 251   3             lcd_cmd(0x80);                         //Move cursor to first line
+ 252   3             msdelay(4);
+ 253   3             lcd_write_string(display_msg3);
+ 254   3             TMOD = 0x11;
+ 255   3             ET0 = 1; //activate interrupts for timer 0 and timer 1
+ 256   3             EA = 1;
+ 257   3             note(freq[2]);
+ 258   3             while(P3 == 0XE7);
+ 259   3             TR0= 0;
+ 260   3             break;
+ 261   3           
+ 262   3           case 0XDE:
+ 263   3             lcd_init();
+ 264   3             lcd_cmd(0x80);                         //Move cursor to first line
+ 265   3             msdelay(4);
+ 266   3             lcd_write_string(display_msg4);
+ 267   3             TMOD = 0x11; //mode 1 timer 0 and timer 1
+ 268   3             ET0 = 1; //activate interrupts for timer 0 and timer 1
+ 269   3             EA = 1;
+ 270   3             note(freq[3]);
+ 271   3             while(P3 == 0XDE);
+ 272   3             TR0= 0;
+ 273   3             break;
+ 274   3           case 0XDD:
+ 275   3             lcd_init();
+ 276   3             lcd_cmd(0x80);                         //Move cursor to first line
+ 277   3             msdelay(4);
+ 278   3             lcd_write_string(display_msg5);
+ 279   3             TMOD = 0x10; //mode 1 timer 0 and timer 1
+ 280   3             ET0 = 1; //activate interrupts for timer 0 and timer 1
+ 281   3             EA = 1;
+ 282   3             note(freq[4]);
+ 283   3             while(P3 == 0XDD);
+ 284   3             TR0= 0;
+ 285   3             break;
+ 286   3           case 0XDB:
+ 287   3             lcd_init();
+ 288   3             lcd_cmd(0x80);                         //Move cursor to first line
+ 289   3             msdelay(4);
+ 290   3             lcd_write_string(display_msg6);
+ 291   3             TMOD = 0x11; //mode 1 timer 0 and timer 1
+ 292   3             ET0 = 1; //activate interrupts for timer 0 and timer 1
+ 293   3             EA = 1;
+ 294   3             note(freq[5]);
+ 295   3             while(P3 == 0XDB);
+ 296   3             TR0= 0;
+ 297   3             break;
+ 298   3           case 0XD7:
+ 299   3             lcd_init();
+ 300   3             lcd_cmd(0x80);                         //Move cursor to first line
+C51 COMPILER V9.60.7.0   KEYBOARD                                                          03/12/2024 15:55:25 PAGE 6   
+
+ 301   3             msdelay(4);
+ 302   3             lcd_write_string(display_msg7);
+ 303   3             TMOD = 0x11; //mode 1 timer 0 and timer 1
+ 304   3             ET0 = 1; //activate interrupts for timer 0 and timer 1
+ 305   3             EA = 1;
+ 306   3             note(freq[6]);
+ 307   3             while(P3 == 0XD7);
+ 308   3             TR0= 0;
+ 309   3             break;
+ 310   3           case 0XBE:
+ 311   3             lcd_init();
+ 312   3             lcd_cmd(0x80);                         //Move cursor to first line
+ 313   3             msdelay(4);
+ 314   3             lcd_write_string(display_msg8);
+ 315   3             TMOD = 0x11; //mode 1 timer 0 and timer 1
+ 316   3             ET0 = 1; //activate interrupts for timer 0 and timer 1
+ 317   3             EA = 1;
+ 318   3             note(freq[7]);
+ 319   3             while(P3 == 0XBE);
+ 320   3             TR0= 0;
+ 321   3             break;
+ 322   3           case 0XBD:
+ 323   3             lcd_init();
+ 324   3             lcd_cmd(0x80);                         //Move cursor to first line
+ 325   3             msdelay(4);
+ 326   3             lcd_write_string(display_msg9);
+ 327   3             break;
+ 328   3           default :
+ 329   3             break;
+ 330   3         
+ 331   3         }     
+ 332   2        }
+ 333   1      }
+ 334          
+ 335          
+ 336          
+ 337          
+ 338          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    973    ----
+   CONSTANT SIZE    =    170    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     26       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,69 @@
+A51 MACRO ASSEMBLER  MIDSEM                                                               02/10/2024 09:10:56 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\midsem.obj
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE midsem.a51 SET(SMALL) DEBUG PRINT(.\Listings\midsem.lst) OBJECT(.\Objec
+                      ts\midsem.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 12010B            5     LCALL SQUARE_PULSE
+0103 12010B            6     LCALL SQUARE_PULSE
+0106 12010B            7     LCALL SQUARE_PULSE
+0109 80FE              8     HERE: SJMP HERE
+                       9     
+                      10     
+010B                  11     SQUARE_PULSE:
+010B C290             12     CLR P1.0
+010D 120116           13     LCALL delay_1_5ms
+0110 D290             14     SETB P1.0
+0112 120116           15     LCALL delay_1_5ms
+0115 22               16     RET
+                      17     
+                      18     
+                      19     
+0116                  20     delay_1_5ms:
+0116 C000             21     push 00h
+0118 7806             22     mov r0, #6
+011A 3121             23     h2: acall delay_250us
+011C D8FC             24     djnz r0, h2
+011E D000             25     pop 00h
+0120 22               26     ret
+                      27     
+0121                  28     delay_250us:
+0121 C000             29     push 00h
+0123 78F4             30     mov r0, #244
+0125 D8FE             31     h1: djnz r0, h1
+0127 D000             32     pop 00h
+0129 22               33     ret
+                      34     
+                      35     
+                      36     
+                      37     END
+A51 MACRO ASSEMBLER  MIDSEM                                                               02/10/2024 09:10:56 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY_1_5MS. . . .  C ADDR   0116H   A   
+DELAY_250US. . . .  C ADDR   0121H   A   
+H1 . . . . . . . .  C ADDR   0125H   A   
+H2 . . . . . . . .  C ADDR   011AH   A   
+HERE . . . . . . .  C ADDR   0109H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+SQUARE_PULSE . . .  C ADDR   010BH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

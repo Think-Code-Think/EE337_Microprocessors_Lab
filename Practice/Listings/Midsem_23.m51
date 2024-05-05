@@ -1,0 +1,223 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    02/10/2024  08:56:49  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\midsem_23.obj TO .\Objects\Midsem_23 PRINT (.\Listings\Midsem_23.m51) RAMSIZE (256
+>> )
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\midsem_23.obj (MIDSEM_23)
+
+
+LINK MAP OF MODULE:  .\Objects\Midsem_23 (MIDSEM_23)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     020CH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Midsem_23 (MIDSEM_23)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MIDSEM_23
+  D:00F0H         SYMBOL        B
+  C:0131H         SYMBOL        DECRPYT_INIT
+  C:01F8H         SYMBOL        DELAY_1MS
+  C:01E5H         SYMBOL        DELAY_1S
+  C:0203H         SYMBOL        DELAY_250US
+  C:01D2H         SYMBOL        DELAY_5S
+  C:0197H         SYMBOL        DIVIDE
+  C:014FH         SYMBOL        DIVIDE_M
+  C:016AH         SYMBOL        EXPO
+  C:0172H         SYMBOL        EXPO_LOOP
+  C:01AAH         SYMBOL        FORWARD
+  C:0160H         SYMBOL        FORWARD_M
+  C:0207H         SYMBOL        H1
+  C:01FCH         SYMBOL        H2
+  C:01EBH         SYMBOL        H3
+  C:01EDH         SYMBOL        H4
+  C:01D8H         SYMBOL        H5
+  C:01DAH         SYMBOL        H6
+  C:0112H         SYMBOL        HERE
+  C:0186H         SYMBOL        KEY_D
+  C:0149H         SYMBOL        KEY_M
+  C:01B5H         SYMBOL        LED_DISP
+  C:0188H         SYMBOL        LOOP
+  C:0100H         SYMBOL        MAIN
+  D:0090H         SYMBOL        P1
+  C:0114H         SYMBOL        PRIVATE_KEY_INIT
+  C:0000H         LINE#         2
+  C:0100H         LINE#         6
+  C:0103H         LINE#         7
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  02/10/2024  08:56:49  PAGE 2
+
+
+  C:0106H         LINE#         8
+  C:0109H         LINE#         9
+  C:010CH         LINE#         10
+  C:010FH         LINE#         11
+  C:0112H         LINE#         12
+  C:0114H         LINE#         16
+  C:0117H         LINE#         17
+  C:011AH         LINE#         18
+  C:011CH         LINE#         19
+  C:011DH         LINE#         20
+  C:011FH         LINE#         21
+  C:0120H         LINE#         22
+  C:0121H         LINE#         23
+  C:0123H         LINE#         24
+  C:0125H         LINE#         25
+  C:0126H         LINE#         26
+  C:0127H         LINE#         27
+  C:0128H         LINE#         28
+  C:012AH         LINE#         29
+  C:012BH         LINE#         30
+  C:012DH         LINE#         31
+  C:0130H         LINE#         32
+  C:0131H         LINE#         35
+  C:0134H         LINE#         36
+  C:0137H         LINE#         37
+  C:0139H         LINE#         38
+  C:013CH         LINE#         39
+  C:013DH         LINE#         40
+  C:013FH         LINE#         41
+  C:0142H         LINE#         42
+  C:0145H         LINE#         43
+  C:0148H         LINE#         44
+  C:0149H         LINE#         47
+  C:014BH         LINE#         48
+  C:014DH         LINE#         49
+  C:014FH         LINE#         50
+  C:0150H         LINE#         51
+  C:0151H         LINE#         52
+  C:0153H         LINE#         53
+  C:0154H         LINE#         54
+  C:0155H         LINE#         55
+  C:0157H         LINE#         56
+  C:0158H         LINE#         57
+  C:0159H         LINE#         58
+  C:015CH         LINE#         59
+  C:015FH         LINE#         60
+  C:0160H         LINE#         61
+  C:0161H         LINE#         62
+  C:0162H         LINE#         63
+  C:0164H         LINE#         64
+  C:0166H         LINE#         65
+  C:0168H         LINE#         66
+  C:0169H         LINE#         70
+  C:016AH         LINE#         74
+  C:016CH         LINE#         75
+  C:016EH         LINE#         76
+  C:0170H         LINE#         77
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  02/10/2024  08:56:49  PAGE 3
+
+
+  C:0172H         LINE#         78
+  C:0173H         LINE#         79
+  C:0175H         LINE#         80
+  C:0176H         LINE#         81
+  C:0178H         LINE#         82
+  C:0179H         LINE#         83
+  C:017AH         LINE#         84
+  C:017CH         LINE#         85
+  C:017DH         LINE#         86
+  C:017EH         LINE#         87
+  C:017FH         LINE#         88
+  C:0181H         LINE#         89
+  C:0183H         LINE#         90
+  C:0185H         LINE#         91
+  C:0186H         LINE#         95
+  C:0188H         LINE#         96
+  C:018AH         LINE#         97
+  C:018CH         LINE#         98
+  C:018EH         LINE#         99
+  C:018FH         LINE#         100
+  C:0191H         LINE#         101
+  C:0192H         LINE#         102
+  C:0194H         LINE#         103
+  C:0196H         LINE#         104
+  C:0197H         LINE#         105
+  C:0198H         LINE#         106
+  C:0199H         LINE#         107
+  C:019BH         LINE#         108
+  C:019CH         LINE#         109
+  C:019DH         LINE#         110
+  C:019FH         LINE#         111
+  C:01A0H         LINE#         112
+  C:01A1H         LINE#         113
+  C:01A4H         LINE#         114
+  C:01A7H         LINE#         115
+  C:01A9H         LINE#         116
+  C:01AAH         LINE#         117
+  C:01ABH         LINE#         118
+  C:01ACH         LINE#         119
+  C:01AEH         LINE#         120
+  C:01B0H         LINE#         121
+  C:01B1H         LINE#         122
+  C:01B4H         LINE#         123
+  C:01B5H         LINE#         126
+  C:01B7H         LINE#         127
+  C:01B9H         LINE#         128
+  C:01BCH         LINE#         129
+  C:01BFH         LINE#         130
+  C:01C2H         LINE#         131
+  C:01C3H         LINE#         132
+  C:01C4H         LINE#         133
+  C:01C5H         LINE#         134
+  C:01C6H         LINE#         135
+  C:01C8H         LINE#         136
+  C:01CBH         LINE#         137
+  C:01CEH         LINE#         138
+  C:01D1H         LINE#         139
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  02/10/2024  08:56:49  PAGE 4
+
+
+  C:01D2H         LINE#         142
+  C:01D4H         LINE#         143
+  C:01D6H         LINE#         144
+  C:01D8H         LINE#         145
+  C:01DAH         LINE#         146
+  C:01DCH         LINE#         147
+  C:01DEH         LINE#         148
+  C:01E0H         LINE#         149
+  C:01E2H         LINE#         150
+  C:01E4H         LINE#         151
+  C:01E5H         LINE#         154
+  C:01E7H         LINE#         155
+  C:01E9H         LINE#         156
+  C:01EBH         LINE#         157
+  C:01EDH         LINE#         158
+  C:01EFH         LINE#         159
+  C:01F1H         LINE#         160
+  C:01F3H         LINE#         161
+  C:01F5H         LINE#         162
+  C:01F7H         LINE#         163
+  C:01F8H         LINE#         167
+  C:01FAH         LINE#         168
+  C:01FCH         LINE#         169
+  C:01FEH         LINE#         170
+  C:0200H         LINE#         171
+  C:0202H         LINE#         172
+  C:0203H         LINE#         175
+  C:0205H         LINE#         176
+  C:0207H         LINE#         177
+  C:0209H         LINE#         178
+  C:020BH         LINE#         179
+  -------         ENDMOD        MIDSEM_23
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 010FH BYTE (13%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=524
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

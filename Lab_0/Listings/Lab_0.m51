@@ -1,0 +1,76 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    01/09/2024  14:59:40  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\Demo.obj, .\Objects\SQUARE_WAVE.obj TO .\Objects\Lab_0 PRINT (.\Listings\Lab_0.m51
+>> ) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Demo.obj (DEMO)
+  .\Objects\SQUARE_WAVE.obj (SQUARE_WAVE)
+
+
+LINK MAP OF MODULE:  .\Objects\Lab_0 (DEMO)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0109H     ABSOLUTE     
+* OVERLAP * CODE    0000H     0113H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Lab_0 (DEMO)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        DEMO
+  C:0107H         SYMBOL        HERE
+  C:0100H         SYMBOL        MAIN
+  C:0000H         LINE#         4
+  C:0100H         LINE#         8
+  C:0102H         LINE#         9
+  C:0104H         LINE#         10
+  C:0105H         LINE#         11
+  C:0107H         LINE#         13
+  -------         ENDMOD        DEMO
+
+  -------         MODULE        SQUARE_WAVE
+  C:010AH         SYMBOL        DELAY
+  C:010CH         SYMBOL        DELAY1
+  C:010EH         SYMBOL        HERE
+  C:0100H         SYMBOL        MAIN
+  D:0090H         SYMBOL        P1
+  C:0000H         LINE#         2
+  C:0100H         LINE#         6
+  C:0102H         LINE#         7
+  C:0104H         LINE#         8
+  C:0106H         LINE#         9
+  C:0108H         LINE#         10
+  C:010AH         LINE#         13
+  C:010CH         LINE#         16
+  C:010EH         LINE#         17
+  C:0110H         LINE#         18
+  C:0112H         LINE#         20
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  01/09/2024  14:59:40  PAGE 2
+
+
+  -------         ENDMOD        SQUARE_WAVE
+
+*** WARNING L5: CODE SPACE MEMORY OVERLAP
+    FROM:    0000H
+    TO:      0108H
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0022H BYTE ( 1%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=540
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,49 @@
+A51 MACRO ASSEMBLER  DOUBT                                                                04/03/2024 20:42:18 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Doubt.obj
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE Doubt.a51 SET(SMALL) DEBUG PRINT(.\Listings\Doubt.lst) OBJECT(.\Objects
+                      \Doubt.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 758901            5     MOV TMOD , #01H
+0103 758C00            6     MOV TH0 , #00H
+0106 758AFE            7     MOV TL0 , #0FEH
+0109 D28C              8     SETB TR0
+010B                   9     READT0:
+010B E58C             10     MOV A , TH0
+010D A88A             11     MOV R0 , TL0
+010F B58CF9           12     CJNE A , TH0 , READT0
+0112                  13     CHECK:
+0112 308DFD           14     JNB TF0 ,CHECK
+0115 C28C             15     CLR TR0
+0117 C28D             16     CLR TF0
+                      17     END
+A51 MACRO ASSEMBLER  DOUBT                                                                04/03/2024 20:42:18 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CHECK. . . . . . .  C ADDR   0112H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+READT0 . . . . . .  C ADDR   010BH   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

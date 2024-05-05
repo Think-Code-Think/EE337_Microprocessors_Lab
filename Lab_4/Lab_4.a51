@@ -1,0 +1,170 @@
+ORG 0H
+LJMP MAIN
+ORG 100H
+MAIN:
+LCALL TAKE_INP
+LCALL QUANT_ENC
+LCALL LED_DISP
+HERE: SJMP HERE
+ORG 130H
+
+DELAY_8s:
+push 00h
+push 01h
+mov r1, #80
+h5: mov r0, #100
+h6: acall delay_1ms
+djnz r0, h6
+djnz r1, h5
+pop 01h
+pop 00h
+RET
+
+DELAY_4s:
+push 00h
+push 01h
+mov r1, #40
+h3: mov r0, #100
+h4: acall delay_1ms
+djnz r0, h4
+djnz r1, h3
+pop 01h
+pop 00h
+RET
+
+delay_1ms:
+push 00h
+mov r0, #4
+h2: acall delay_250us
+djnz r0, h2
+pop 00h
+ret
+
+delay_250us:
+push 00h
+mov r0, #244
+h1: djnz r0, h1
+pop 00h
+ret
+
+TAKE_INP:
+MOV P1 , #1FH
+ACALL DELAY_8S
+MOV A, P1
+SUBB A , #10H
+SWAP A 
+MOV 50H , A 
+
+MOV P1 , #2FH
+ACALL DELAY_8S
+MOV A, P1
+SUBB A , #20H
+ADD A , 50H
+MOV 50H , A 
+//FIRST NUMBER READ AND STORED AT 50H
+
+MOV P1 , #3FH
+ACALL DELAY_8S
+MOV A, P1
+SUBB A , #30H
+SWAP A 
+MOV 51H , A
+
+MOV P1 , #4FH
+ACALL DELAY_8S
+MOV A, P1
+SUBB A , #40H
+ADD A , 51H
+MOV 51H , A
+//SECOND NUMBER READ AND STORED AT 51H
+
+MOV P1 , #5FH
+ACALL DELAY_8S
+MOV A, P1
+SUBB A , #50H
+SWAP A 
+MOV 52H , A
+
+MOV P1 , #6FH
+ACALL DELAY_8S
+MOV A, P1
+SUBB A , #60H
+ADD A , 52H
+MOV 52H , A
+//THIRD NUMBER READ AND STORED AT 52H
+
+MOV P1 , #7FH
+ACALL DELAY_8S
+MOV A, P1
+SUBB A , #70H
+SWAP A 
+MOV 53H , A
+
+MOV P1 , #8FH
+ACALL DELAY_8S
+MOV A, P1
+SUBB A , #80H
+ADD A , 53H
+MOV 53H , A
+//FOURTH NUMBER READ AND STORED AT 53H
+RET
+
+QUANT_ENC:
+// ADD YOUR CODE HERE
+MOV R0, #50H ; Starting memory location of inputs
+MOV R2, #4 ; Loop counter for 4 inputs
+    
+QUANT_ENC_LOOP:
+MOV A, @R0 ; Load input value
+LCALL QUANTIZATION ; Call quantization function
+MOV @R0, A ; Store the quantized value back in memory
+INC R0
+DJNZ R2, QUANT_ENC_LOOP ; Continue the loop for the remaining inputs   
+RET
+QUANTIZATION:
+CHECK1:
+MOV B , A
+CLR C
+SUBB A , #64
+JZ SET64
+JNC CHECK2
+MOV A , #10H
+RET
+CHECK2:
+MOV A , B
+CLR C
+SUBB A , #128
+JZ SET128
+JNC CHECK3
+MOV A , #20H
+RET
+CHECK3:
+MOV A , B
+CLR C
+SUBB A , #192
+JZ SET192
+JNC SET192
+MOV A , #40H
+RET
+SET64:
+MOV A , #20H
+RET
+SET128:
+MOV A , #40H
+RET
+SET192:
+MOV A , #80H
+RET
+
+LED_DISP:
+// ADD YOUR CODE HERE
+MOV R0, #50H
+MOV R2, #4
+LED_DISP_LOOP:
+MOV P1 , @R0
+LCALL DELAY_4s
+INC R0
+DJNZ R2, LED_DISP_LOOP
+JMP LED_DISP
+RET
+END
