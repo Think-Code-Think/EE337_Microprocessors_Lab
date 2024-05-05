@@ -4,18 +4,34 @@ Welcome to the Microprocessors Laboratory repository! This repository contains t
 
 ## Labs Overview
 
-In this laboratory, we delved into 10 comprehensive labs covering a wide range of topics and applications utilizing the AT89C5131A microcontroller. Each lab provided valuable insights into microcontroller programming and embedded systems. Here's a brief overview of the labs:
+In this laboratory, we completed 10 comprehensive labs covering a wide range of topics and applications utilizing the AT89C5131A microcontroller. Each lab provided valuable insights into microcontroller programming and embedded systems. Here's a detailed overview of each lab:
 
-1. **Lab 1**: Introduction to AT89C5131A Microcontroller
-2. **Lab 2**: GPIO Configuration and LED Blinking
-3. **Lab 3**: Interrupts and Timers
-4. **Lab 4**: Serial Communication (UART)
-5. **Lab 5**: Analog-to-Digital Conversion (ADC)
-6. **Lab 6**: Digital-to-Analog Conversion (DAC)
-7. **Lab 7**: PWM Generation
-8. **Lab 8**: LCD Interfacing
-9. **Lab 9**: I2C Communication Protocol
-10. **Lab 10**: SPI Communication Protocol
+1. **Lab 1**: Introduction to Keil and Basic Assembly Code
+   - Learned how to use Keil uVision5 and wrote basic assembly code.
+
+2. **Lab 2**: Assembly Programming - add16 and xor_swap
+   - Implemented assembly programs for add16 and xor_swap operations.
+
+3. **Lab 3**: Assembly Programming - Multiply and Accumulate (MAC), DELAY 5s Subroutine, PT-51 Test Program
+   - Developed assembly programs for Multiply and Accumulate (MAC) operation, DELAY 5s subroutine, and PT-51 Test Program.
+
+4. **Lab 4**: Analog-to-Digital Conversion (ADC)
+   - Wrote an assembly program to convert an analog signal to a digital signal.
+
+5. **Lab 5**: LCD Interfacing and Binary Classification Assembly Program
+   - Explored LCD interfacing and developed a basic Binary Classification assembly program.
+
+6. **Lab 6**: Timers, Interrupts, and Speaker Interface
+   - Used timers and interrupts in embedded C code and interfaced a speaker to play musical notes.
+
+7. **Lab 7**: Pt-51 Musical Instrument Interface
+   - Utilized the Pt-51 board as a musical instrument by interfacing it with a keypad and speaker.
+
+8. **Lab 8**: Serial Port Interface (SPI) and Temperature Measurement
+   - Implemented serial port interface (SPI) to interface an analog-to-digital converter (ADC) MCP3008 with the 8051 microcontroller. Also set up SPI to measure room temperature using the LM35 temperature sensor.
+
+9. **Lab 9**: USB-to-UART Communication and Transaction System
+   - Developed a program for communicating between Pt-51 and a computer using a USB-to-UART adapter (Prolific PL2303) and Realterm software. Created a basic transaction system.
 
 ## Project: Low-Pass Digital FIR Filter using Pt-51
 
@@ -51,5 +67,3 @@ Contributions to this repository are welcome! If you find any issues, have sugge
 This project is licensed under the [MIT License](LICENSE), which means you are free to use, modify, and distribute the code for personal and commercial purposes.
 
 ---
-
-By [Your Name]
